@@ -14,5 +14,5 @@ jobs:
           email: peterakinlolu@gmail.com
           password: '@desmind890'
       - name: results
-        run: echo {{ steps.action.outputs.logintime }}
+        run: echo ${{ steps.action.outputs.logintime }}
           
