@@ -1,0 +1,17 @@
+name: test action
+description: this is to test how the github action works
+inputs:
+  email: 
+    required: true
+    description:  the email address
+    default: peterakinlolu@gmail.com
+  password:
+    required: true
+    description: the users password
+    default: ''
+outputs:
+  logintime:
+    description: the output
+runs:
+  using: node16
+  main: index.js

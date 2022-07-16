@@ -1,0 +1,16 @@
+name: action_test
+on: push
+jobs:
+  test_me:
+    name: actionTester
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing me
+        id: action
+        uses: ./
+        with:
+          email: peterakinlolu@gmail.com
+          password: '@desmind890'
+      - name: results
+        run: echo {{ steps.action.outputs.logintime }}
+          
