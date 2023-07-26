@@ -12,7 +12,7 @@ jobs:
         uses: ./
         with:
           email: peterakinlolu@gmail.com
-          password: '@desmind890'
+          password: '@desmind89012'
       - name: results
         run: |
           echo olamisoro ${{ steps.action.outputs.logintime }}
