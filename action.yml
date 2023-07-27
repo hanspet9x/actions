@@ -1,17 +1,14 @@
-name: test action
-description: this is to test how the github action works
+name: Create .env file
+description: This action creates .env file from the specified multiline variables
 inputs:
-  email: 
+  env: 
     required: true
-    description:  the email address
-    default: peterakinlolu@gmail.com
-  password:
-    required: true
-    description: the users password
-    default: ''
+    description:  Multiline Environment Variables
 outputs:
-  logintime:
-    description: the output
+  status:
+    description: failed | success
+  envs:
+    description: space separated list of environment variables
 runs:
   using: node16
   main: dist/index.js

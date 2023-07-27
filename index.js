@@ -1,18 +1,25 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
 const fs = require('fs');
-const path = require('path');
+const os = require('os');
 
-async function run(){
+async function run() {
     try {
-    
-        const email = core.getInput('email', {trimWhitespace: true, required: true});
-        const password = core.getInput('password', {required: true});
-        core.setOutput('logintime', 'yeeee');
-        fs.writeFileSync('./test.txt', 'Name=tolu')
+
+        const envs = core.getMultilineInput('env', { trimWhitespace: true, required: true });
+        let envList = ''
+        envs.forEach(env => {
+            const keyValues = env.split(':');
+            const value =keyValues.splice(1, keyValues.length -1).join(':');
+            envList += `${keyValues[0].trim()}=${value.trim()} `;
+            fs.writeFileSync('./.env', `${keyValues[0].trim()}=${(value || '').trim()}${os.EOL}`, { flag: 'a' })
+        })
+        core.setOutput('envs', envList);
+        core.setOutput('status', 'success');
+        
     } catch (error) {
         core.debug(error.message);
         core.setFailed(error.message);
+        core.setOutput('status', 'failed');
     }
 }
 run();

@@ -1,19 +1,27 @@
 name: action_test
 on: push
 jobs:
-  test_me:
-    name: actionTester
+  create_env:
+    name: Test env
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: testing me
         id: action
         uses: ./
         with:
-          email: peterakinlolu@gmail.com
-          password: '@desmind89012'
+          env: |
+            endpoint_app: dev-de.tripplo.co
+            endpoint_api: dev-dep:tripplo.co
+            name: ${{ env.AKIN }}
+            stage:
+        env:
+          AKIN: tola
       - name: results
         run: |
-          echo olamisoro ${{ steps.action.outputs.logintime }}
+          echo dddd
+          echo ${{ steps.action.outputs.envs }}
           ls
+          echo "showing test file"
+          echo $(cat .env)
